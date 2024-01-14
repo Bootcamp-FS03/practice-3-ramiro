@@ -1,24 +1,46 @@
-import './style.css'
-import typescriptLogo from './typescript.svg'
-import viteLogo from '/vite.svg'
-import { setupCounter } from './counter.ts'
+import { AuthComponent } from "./components/AuthComponent";
+import { FeedComponent } from "./components/FeedComponent";
+import { AuthService } from "./services/AuthService";
 
-document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
-  <div>
-    <a href="https://vitejs.dev" target="_blank">
-      <img src="${viteLogo}" class="logo" alt="Vite logo" />
-    </a>
-    <a href="https://www.typescriptlang.org/" target="_blank">
-      <img src="${typescriptLogo}" class="logo vanilla" alt="TypeScript logo" />
-    </a>
-    <h1>Vite + TypeScript</h1>
-    <div class="card">
-      <button id="counter" type="button"></button>
-    </div>
-    <p class="read-the-docs">
-      Click on the Vite and TypeScript logos to learn more
-    </p>
-  </div>
-`
+// EVENT LISTENERS
+document
+  .getElementById("show-login")!
+  .addEventListener("click", () => AuthComponent.showLogin());
+document
+  .getElementById("show-register")!
+  .addEventListener("click", () => AuthComponent.showRegistration());
+document
+  .getElementById("show-change-password")!
+  .addEventListener("click", () => AuthComponent.showChangePassword());
+document
+  .getElementById("back-to-login")!
+  .addEventListener("click", () => AuthComponent.showLogin());
+document
+  .getElementById("login-btn")!
+  .addEventListener("click", () => AuthComponent.login());
+document
+  .getElementById("register-btn")!
+  .addEventListener("click", () => AuthComponent.register());
+document
+  .getElementById("change-password-btn")!
+  .addEventListener("click", () => AuthComponent.changePassword());
+document
+  .getElementById("logout-btn")!
+  .addEventListener("click", () => AuthComponent.logout());
+document
+  .getElementById("add-post-btn")!
+  .addEventListener("click", () => FeedComponent.addPost());
 
-setupCounter(document.querySelector<HTMLButtonElement>('#counter')!)
+// Authentication
+if (AuthService.getCurrentUser()) {
+  document.getElementById("loginPage")!.style.display = "none";
+  document.getElementById("registerPage")!.style.display = "none";
+  document.getElementById("changePasswordPage")!.style.display = "none";
+  document.getElementById("forgot-passord")!.style.display = "none";
+  document.getElementById("navbar")!.style.display = "flex";
+  document.getElementById(
+    "welcome",
+  )!.innerHTML = `Welcome ${AuthService.getCurrentUser()}!`;
+  document.getElementById("feedPage")!.style.display = "flex";
+  FeedComponent.showFeed();
+}
