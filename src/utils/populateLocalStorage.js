@@ -30,5 +30,3 @@ function populateLocalStorage() {
   localStorage.setItem("posts", JSON.stringify(posts));
   console.log("LocalStorage populated.");
 }
-
-populateLocalStorage();

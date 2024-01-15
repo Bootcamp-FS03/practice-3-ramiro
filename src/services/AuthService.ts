@@ -47,10 +47,10 @@ export class AuthService {
     if (existingUser) {
       const userIndex = this.users.indexOf(existingUser);
       this.users[userIndex].password = password;
+      localStorage.setItem("users", JSON.stringify(this.users));
       return true;
     }
-
-    localStorage.setItem("users", JSON.stringify(this.users));
+    
     return false;
   }
 }
