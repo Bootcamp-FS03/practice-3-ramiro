@@ -33,7 +33,7 @@ export class FeedComponent {
         ).toLocaleString()}`;
         postInfoElement.appendChild(timestampElement);
 
-        if (post.image) {
+        if (post.image && post.image !== "") {
           const imageElement = document.createElement("img");
           imageElement.src = post.image;
           postElement.appendChild(imageElement);
@@ -95,5 +95,19 @@ export class FeedComponent {
     }
   }
 
-  static editPost(post: Post): void {}
+  static editPost(post: Post): void {
+    let content = prompt("Please, enter your new content:", `${post.content}`);
+    let image = prompt("Please, enter your new image:", `${post.image}`);
+
+    if (content && image) {
+      post = { ...post, content, image };
+    } else if (!content && image) {
+      post = { ...post, image, content: "" };
+    } else if (content && !image) {
+      post = { ...post, content, image: "" };
+    }
+
+    FeedService.editPost(post);
+    this.showFeed();
+  }
 }

@@ -7,7 +7,7 @@
 :root {
   --primary-color: rgb(226, 248, 255);
   --secondary-color: rgb(255, 175, 135);
-  --white: #fff;
+  --white: rgb(253,251,251);
   --black: rgb(34, 29, 35);
 }
 
@@ -50,9 +50,7 @@ textarea {
   flex-direction: column;
 }
 
-#loginForm input,
-#registerForm input,
-#changePasswordForm input {
+input {
   margin: 5px 0;
   padding: 10px;
   border-radius: 25px;

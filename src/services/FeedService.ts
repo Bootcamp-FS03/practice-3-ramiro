@@ -30,7 +30,15 @@ export class FeedService {
     );
   }
 
-  static editPost(post: Post): void {
-
+  static editPost(updatedPost: Post): void {
+    let postToUpdate = this.posts.find(
+      (p: Post) =>
+        p.username === updatedPost.username &&
+        p.timestamp === updatedPost.timestamp,
+    );
+    if (postToUpdate) {
+      let postIndex = this.posts.indexOf(postToUpdate);
+      this.posts[postIndex] = updatedPost;
+    }
   }
 }
