@@ -1,18 +1,7 @@
 import { User } from "../models/User";
 
 export class AuthService {
-  public static users: User[] = [
-    {
-      username: "ramiro",
-      password: "password",
-      email: "ramiro@example.com",
-    },
-    {
-      username: "maria",
-      password: "password",
-      email: "maria@example.com",
-    },
-  ];
+  public static users: User[] = JSON.parse(localStorage.getItem("users")!);
 
   static getCurrentUser(): string | null {
     return localStorage.getItem("user");
@@ -30,12 +19,13 @@ export class AuthService {
       (u) => u.username === user.username,
     );
     const existingEmail = this.users.find((u) => u.email === user.email);
-    
+
     if (existingUsername || existingEmail) {
       return false;
     }
 
     this.users.push(user);
+    localStorage.setItem("users", JSON.stringify(this.users));
     return true;
   }
 
@@ -55,10 +45,12 @@ export class AuthService {
     const existingUser = this.users.find((u) => u.email === email);
 
     if (existingUser) {
-      existingUser.password = password;
+      const userIndex = this.users.indexOf(existingUser);
+      this.users[userIndex].password = password;
       return true;
     }
 
+    localStorage.setItem("users", JSON.stringify(this.users));
     return false;
   }
 }

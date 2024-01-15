@@ -1,14 +1,7 @@
 import { Post } from "../models/Post";
 
 export class FeedService {
-  private static posts: Post[] = [
-    {
-      username: "ramiro",
-      image: "http://placekitten.com/200/300",
-      content: "hello world!",
-      timestamp: Date.now(),
-    },
-  ];
+  private static posts: Post[] = JSON.parse(localStorage.getItem("posts")!);
 
   static getPosts(): Post[] {
     return this.posts;
@@ -28,6 +21,7 @@ export class FeedService {
     this.posts = this.posts.filter(
       (post) => !(post.username === username && post.timestamp === timestamp),
     );
+    localStorage.setItem("posts", JSON.stringify(this.posts));
   }
 
   static editPost(updatedPost: Post): void {
@@ -36,9 +30,11 @@ export class FeedService {
         p.username === updatedPost.username &&
         p.timestamp === updatedPost.timestamp,
     );
+    
     if (postToUpdate) {
       let postIndex = this.posts.indexOf(postToUpdate);
       this.posts[postIndex] = updatedPost;
+      localStorage.setItem("posts", JSON.stringify(this.posts));
     }
   }
 }
