@@ -228,3 +228,17 @@ img {
 .delete-btn:hover {
   background-color: var(--secondary-color-hover);
 }
+
+@media screen and (max-width: 600px) {
+  .post {
+    width: 60vw;
+    padding: 0;
+  }
+  #post-input {
+    width: 60vw;
+  }
+  #feed-container {
+    width: 60vw;
+    margin-bottom: 50px;
+  }
+}
