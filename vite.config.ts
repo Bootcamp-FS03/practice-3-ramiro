@@ -1,5 +1,5 @@
 import { defineConfig } from "vite";
 
 export default defineConfig({
-    base: "/pratice-3-Ramiro/"
+    base: "/pratice-3-ramiro/"
 });

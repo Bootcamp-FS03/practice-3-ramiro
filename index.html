@@ -13,7 +13,6 @@
   </head>
 
   <body>
-    <script defer type="module" src="/src/scripts/populateLocalStorage.js"></script>
     <script defer type="module" src="/src/main.ts"></script>
     <div id="app">
       <div id="loginPage" class="page">
@@ -139,7 +138,11 @@
       <div id="feedPage" class="page" style="display: none">
         <h2>What's in your mind?...</h2>
         <textarea id="post-input" placeholder=""></textarea>
-        <input id="image-src" type="text" placeholder="Add your image url here" />
+        <input
+          id="image-src"
+          type="text"
+          placeholder="Add your image url here"
+        />
         <button type="button" onclick="addPost()" id="add-post-btn">
           Post
         </button>
