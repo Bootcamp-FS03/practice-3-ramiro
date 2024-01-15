@@ -32,11 +32,11 @@
             required
             placeholder="Password"
           />
-          <button type="button" onclick="login()" id="login-btn">Login</button>
+          <button type="button" id="login-btn">Login</button>
         </form>
         <p>
           Don't have an account?
-          <button onclick="showRegistration()" id="show-register">
+          <button id="show-register">
             Register
           </button>
         </p>
@@ -73,13 +73,13 @@
             required
             placeholder="Confirm Password"
           />
-          <button type="button" onclick="register()" id="register-btn">
+          <button type="button" id="register-btn">
             Register
           </button>
         </form>
         <p>
           Already have an account?
-          <button onclick="showLogin()" id="show-login">Login</button>
+          <button id="show-login">Login</button>
         </p>
       </div>
 
@@ -109,7 +109,6 @@
           />
           <button
             type="button"
-            onclick="changePassword()"
             id="change-password-btn"
           >
             Change Password
@@ -119,20 +118,20 @@
 
       <p id="forgot-passord">
         Forgot your password?
-        <button onclick="showChangePassword()" id="show-change-password">
+        <button id="show-change-password">
           Change Password
         </button>
       </p>
 
       <p id="back-to-login" style="display: none">
-        <button onclick="showLogin()" id="back-to-login">
+        <button id="back-to-login">
           Back to Login Page
         </button>
       </p>
 
       <div id="navbar" style="display: none">
         <h1 id="welcome"></h1>
-        <button id="logout-btn" onclick="logout()">Log Out</button>
+        <button id="logout-btn">Log Out</button>
       </div>
 
       <div id="feedPage" class="page" style="display: none">
@@ -143,7 +142,7 @@
           type="text"
           placeholder="Add your image url here"
         />
-        <button type="button" onclick="addPost()" id="add-post-btn">
+        <button type="button" id="add-post-btn">
           Post
         </button>
         <div id="feed-container"></div>
