@@ -13,7 +13,6 @@
   </head>
 
   <body>
-    <script type="module" src="/src/main.ts"></script>
     <div id="app">
       <div id="loginPage" class="page">
         <h1>Login</h1>
@@ -32,11 +31,13 @@
             required
             placeholder="Password"
           />
-          <button type="button" id="login-btn">Login</button>
+          <button type="button" id="login-btn" data-action="login">
+            Login
+          </button>
         </form>
         <p>
           Don't have an account?
-          <button id="show-register">
+          <button data-toggle-id="registerPage" class="auth-nav-btn">
             Register
           </button>
         </p>
@@ -73,13 +74,13 @@
             required
             placeholder="Confirm Password"
           />
-          <button type="button" id="register-btn">
+          <button type="button" id="register-btn" data-action="register">
             Register
           </button>
         </form>
         <p>
           Already have an account?
-          <button id="show-login">Login</button>
+          <button data-toggle-id="loginPage" class="auth-nav-btn">Login</button>
         </p>
       </div>
 
@@ -110,28 +111,29 @@
           <button
             type="button"
             id="change-password-btn"
+            data-action="changePassword"
           >
             Change Password
           </button>
         </form>
       </div>
 
-      <p id="forgot-passord">
+      <p id="forgot-password">
         Forgot your password?
-        <button id="show-change-password">
+        <button data-toggle-id="changePasswordPage" class="nav-btn">
           Change Password
         </button>
       </p>
 
       <p id="back-to-login" style="display: none">
-        <button id="back-to-login">
+        <button data-toggle-id="loginPage" class="nav-btn">
           Back to Login Page
         </button>
       </p>
 
       <div id="navbar" style="display: none">
         <h1 id="welcome"></h1>
-        <button id="logout-btn">Log Out</button>
+        <button id="logout-btn" data-action="logout">Log Out</button>
       </div>
 
       <div id="feedPage" class="page" style="display: none">
@@ -142,11 +144,14 @@
           type="text"
           placeholder="Add your image url here"
         />
-        <button type="button" id="add-post-btn">
+        <button type="button" id="add-post-btn" data-action="addPost">
           Post
         </button>
+
         <div id="feed-container"></div>
       </div>
     </div>
+    <script type="module" src="/src/main.ts"></script>
+    <script type="module" src="/populateLocalStorage.js"></script>
   </body>
 </html>

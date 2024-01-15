@@ -7,7 +7,7 @@
 :root {
   --primary-color: rgb(226, 248, 255);
   --secondary-color: rgb(255, 175, 135);
-  --white: rgb(253,251,251);
+  --white: rgb(253, 251, 251);
   --black: rgb(34, 29, 35);
 }
 
@@ -70,27 +70,23 @@ input {
   cursor: pointer;
 }
 
-#show-register,
-#show-login {
+.auth-nav-btn {
   background-color: var(--white);
   border: none;
   cursor: pointer;
 }
 
-#show-register:hover,
-#show-login:hover {
+.auth-nav-btn:hover {
   color: var(--secondary-color);
 }
 
-#show-change-password,
-#back-to-login {
+.nav-btn {
   background-color: var(--primary-color);
   border: none;
   cursor: pointer;
 }
 
-#show-change-password:hover,
-#back-to-login:hover {
+.nav-btn:hover {
   color: var(--secondary-color);
 }
 

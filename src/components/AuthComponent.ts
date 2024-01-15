@@ -2,30 +2,6 @@ import { User } from "../models/User";
 import { AuthService } from "../services/AuthService";
 
 export class AuthComponent {
-  static showLogin(): void {
-    document.getElementById("loginPage")!.style.display = "block";
-    document.getElementById("registerPage")!.style.display = "none";
-    document.getElementById("changePasswordPage")!.style.display = "none";
-    document.getElementById("forgot-passord")!.style.display = "block";
-    document.getElementById("back-to-login")!.style.display = "none";
-  }
-
-  static showRegistration(): void {
-    document.getElementById("loginPage")!.style.display = "none";
-    document.getElementById("registerPage")!.style.display = "block";
-    document.getElementById("changePasswordPage")!.style.display = "none";
-    document.getElementById("forgot-passord")!.style.display = "block";
-    document.getElementById("back-to-login")!.style.display = "none";
-  }
-
-  static showChangePassword(): void {
-    document.getElementById("loginPage")!.style.display = "none";
-    document.getElementById("registerPage")!.style.display = "none";
-    document.getElementById("changePasswordPage")!.style.display = "block";
-    document.getElementById("forgot-passord")!.style.display = "none";
-    document.getElementById("back-to-login")!.style.display = "block";
-  }
-
   static login(): void {
     const usernameInput = document.getElementById(
       "username",
@@ -106,16 +82,14 @@ export class AuthComponent {
   }
 
   static changePassword(): void {
-    const emailInput = document.getElementById(
-      "ps-email",
-    ) as HTMLInputElement;
+    const emailInput = document.getElementById("ps-email") as HTMLInputElement;
     const newPasswordInput = document.getElementById(
       "newPassword",
     ) as HTMLInputElement;
     const confirmNewPasswordInput = document.getElementById(
       "confirmNewPassword",
     ) as HTMLInputElement;
-    
+
     const email = emailInput.value;
     const newPassword = newPasswordInput.value;
     const confirmNewPassword = confirmNewPasswordInput.value;
