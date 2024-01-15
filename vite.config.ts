@@ -1,5 +1,5 @@
 import { defineConfig } from "vite";
 
 export default defineConfig({
-    base: "/pratice-3-ramiro/"
+    base: "https://bootcamp-fs03.github.io/practice-3-ramiro/"
 });
