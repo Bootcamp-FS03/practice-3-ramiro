@@ -122,7 +122,8 @@ input {
   background-color: var(--secondary-color);
 }
 
-#add-post-btn {
+#add-post-btn,
+.confirm-btn {
   background-color: var(--secondary-color);
   height: 33px;
   border-radius: 25px;
@@ -136,7 +137,8 @@ input {
   align-self: flex-end;
 }
 
-#add-post-btn:hover {
+#add-post-btn:hover,
+.confirm-btn:hover {
   background-color: var(--secondary-color-hover);
 }
 
@@ -227,6 +229,29 @@ img {
 .edit-btn:hover,
 .delete-btn:hover {
   background-color: var(--secondary-color-hover);
+}
+
+dialog {
+  border-radius: 25px;
+  border: none;
+  display: flex;
+  flex-direction: column;
+}
+
+.close-btn {
+  background-color: var(--white);
+  color: var(--black);
+  border: none;
+  align-self: self-end;
+}
+
+.close-btn:hover {
+  color: var(--secondary-color);
+}
+
+.edit-form {
+  display: flex;
+  flex-direction: column;
 }
 
 @media screen and (max-width: 600px) {

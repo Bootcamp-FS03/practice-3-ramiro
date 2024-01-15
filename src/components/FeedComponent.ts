@@ -1,3 +1,4 @@
+import { NotificationBuilder } from "../builders/NotificationBuilder";
 import { Post } from "../models/Post";
 import { AuthService } from "../services/AuthService";
 import { FeedService } from "../services/FeedService";
@@ -83,31 +84,82 @@ export class FeedComponent {
   }
 
   static deletePost(post: Post): void {
-    const confirmDelete = confirm("Are you sure you want to delete this post?");
-    if (confirmDelete) {
-      const currentUser = AuthService.getCurrentUser();
-      if (currentUser && currentUser === post.username) {
-        FeedService.removePost(post.username, post.timestamp);
-        this.showFeed();
-      } else {
-        alert("You can't delete this post.");
-      }
-    }
+    NotificationBuilder.showNotification(
+      "Are you sure you want to delete this post?",
+      () => {
+        const currentUser = AuthService.getCurrentUser();
+        if (currentUser && currentUser === post.username) {
+          FeedService.removePost(post.username, post.timestamp);
+          this.showFeed();
+        } else {
+          NotificationBuilder.showNotification("You can't delete this post.");
+        }
+      },
+    );
   }
 
   static editPost(post: Post): void {
-    let content = prompt("Please, enter your new content:", `${post.content}`);
-    let image = prompt("Please, enter your new image:", `${post.image}`);
+    const modalContent = document.createElement("div");
+    modalContent.classList.add("edit-form");
 
-    if (content && image) {
-      post = { ...post, content, image };
-    } else if (!content && image) {
-      post = { ...post, image, content: "" };
-    } else if (content && !image) {
-      post = { ...post, content, image: "" };
-    }
+    // Create content input
+    const contentInput = document.createElement("input");
+    contentInput.type = "text";
+    contentInput.value = post.content;
+    contentInput.placeholder = "Enter your new content";
+    modalContent.appendChild(contentInput);
 
-    FeedService.editPost(post);
-    this.showFeed();
+    // Create image input
+    const imageInput = document.createElement("input");
+    imageInput.type = "text";
+
+    if (post.image) imageInput.value = post.image;
+
+    imageInput.placeholder = "Enter your new image URL";
+    modalContent.appendChild(imageInput);
+
+    NotificationBuilder.showNotification(
+      "Edit Post",
+      () => {
+        const content = contentInput.value.trim();
+        const image = imageInput.value.trim();
+
+        if (content || image) {
+          // User confirmed the edit
+          const editedPost = { ...post, content, image };
+          FeedService.editPost(editedPost);
+          this.showFeed();
+        } else {
+          // User canceled the edit
+        }
+      },
+      modalContent,
+    );
   }
 }
+
+// const modal = document.getElementById("edit-post-dialog")!;
+// NotificationBuilder.showNotification(
+//   "Edit post",
+//   () => {
+//     FeedService.editPost(post);
+//   },
+//   post,
+// );
+
+// const confirmButton = document.createElement("button");
+// confirmButton.innerText = "Confirm";
+
+// let content = prompt("Please, enter your new content:", `${post.content}`);
+// let image = prompt("Please, enter your new image:", `${post.image}`);
+
+// if (content && image) {
+//   post = { ...post, content, image };
+// } else if (!content && image) {
+//   post = { ...post, image, content: "" };
+// } else if (content && !image) {
+//   post = { ...post, content, image: "" };
+// }
+
+// FeedService.editPost(post);
+// this.showFeed();

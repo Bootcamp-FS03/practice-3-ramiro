@@ -1,3 +1,4 @@
+import { NotificationBuilder } from "../builders/NotificationBuilder";
 import { User } from "../models/User";
 import { AuthService } from "../services/AuthService";
 
@@ -19,7 +20,7 @@ export class AuthComponent {
       localStorage.setItem("user", username);
       location.reload();
     } else {
-      alert("Invalid credentials.");
+      NotificationBuilder.showNotification("Invalid credentials.");
     }
   }
 
@@ -47,17 +48,17 @@ export class AuthComponent {
 
     if (username && email && password && confirmPassword) {
       if (!AuthService.validatePassword(password, confirmPassword)) {
-        alert("Passwords don't match.");
+        NotificationBuilder.showNotification("Passwords don't match.");
         return;
       }
 
       if (!AuthService.isUsernameAvailable(username)) {
-        alert("Username already exists.");
+        NotificationBuilder.showNotification("Username already exists.");
         return;
       }
 
       if (!AuthService.isEmailAvailable(email)) {
-        alert("Email already registered.");
+        NotificationBuilder.showNotification("Email already registered.");
         return;
       }
 
@@ -70,14 +71,11 @@ export class AuthComponent {
       const isRegistered = AuthService.register(newUser);
 
       if (isRegistered) {
-        alert("User registered successfully.");
+        NotificationBuilder.showNotification("User registered successfully.");
         localStorage.setItem("user", username);
-        location.reload();
-      } else {
-        alert("Username already exists.");
       }
     } else {
-      alert("Fill all inputs.");
+      NotificationBuilder.showNotification("Fill all inputs.");
     }
   }
 
@@ -95,12 +93,14 @@ export class AuthComponent {
     const confirmNewPassword = confirmNewPasswordInput.value;
 
     if (!AuthService.validatePassword(newPassword, confirmNewPassword)) {
-      alert("Passwords don't match.");
+      NotificationBuilder.showNotification("Password don't match");
       return;
     }
 
     const changePasswords = AuthService.changePassword(email, newPassword);
 
-    if (changePasswords) alert("Password changed successfully.");
+    if (changePasswords) {
+      NotificationBuilder.showNotification("Password updated successfully.");
+    }
   }
 }
