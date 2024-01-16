@@ -1,0 +1,269 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+:root {
+  --primary-color: rgb(226, 248, 255);
+  --secondary-color: rgb(255, 175, 135);
+  --secondary-color-hover: rgb(255, 195, 166);
+  --white: rgb(253, 251, 251);
+  --black: rgb(34, 29, 35);
+}
+
+body {
+  margin: 0;
+  font-family: "Poppins", sans-serif;
+}
+
+input,
+textarea {
+  font-family: inherit;
+}
+
+#app {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+  width: 100vw;
+  background-color: var(--primary-color);
+}
+
+#loginPage,
+#registerPage,
+#changePasswordPage {
+  background-color: var(--white);
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: 10px 10px 5px 0px rgba(34, 29, 35, 0.3);
+  border-radius: 25px;
+  padding: 30px 50px;
+}
+
+#loginForm,
+#registerForm,
+#changePasswordForm {
+  display: flex;
+  flex-direction: column;
+}
+
+input {
+  margin: 5px 0;
+  padding: 10px;
+  border-radius: 25px;
+  border: none;
+  background-color: var(--primary-color);
+}
+
+#loginForm button,
+#registerForm button,
+#changePasswordForm button {
+  margin: 25px 0 5px 0;
+  width: 100%;
+  height: 33px;
+  border-radius: 25px;
+  background-color: var(--secondary-color);
+  border: none;
+  cursor: pointer;
+}
+
+#loginForm button:hover,
+#registerForm button:hover,
+#changePasswordForm button:hover {
+  background-color: var(--secondary-color-hover);
+}
+
+.auth-nav-btn {
+  background-color: var(--white);
+  border: none;
+  cursor: pointer;
+}
+
+.auth-nav-btn:hover {
+  color: var(--secondary-color);
+}
+
+.nav-btn {
+  background-color: var(--primary-color);
+  border: none;
+  cursor: pointer;
+}
+
+.nav-btn:hover {
+  color: var(--secondary-color);
+}
+
+#navbar {
+  width: 100vw;
+  background-color: var(--white);
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 50px;
+  box-shadow: 2px 3px 5px 0px rgba(34, 29, 35, 0.1);
+}
+
+#logout-btn {
+  background-color: var(--white);
+  height: 33px;
+  border-radius: 25px;
+  border: solid 2px var(--secondary-color);
+  cursor: pointer;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#logout-btn:hover {
+  background-color: var(--secondary-color);
+}
+
+#add-post-btn,
+.confirm-btn {
+  background-color: var(--secondary-color);
+  height: 33px;
+  border-radius: 25px;
+  border: none;
+  cursor: pointer;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 10px 0 15px 0;
+  align-self: flex-end;
+}
+
+#add-post-btn:hover,
+.confirm-btn:hover {
+  background-color: var(--secondary-color-hover);
+}
+
+#feedPage {
+  flex-direction: column;
+  align-items: center;
+}
+
+#post-input {
+  box-shadow: 10px 10px 5px 0px rgba(34, 29, 35, 0.3);
+  resize: none;
+  margin: 5px 0 5px 0;
+  width: 40vw;
+  height: 15vh;
+  padding: 15px;
+  border-radius: 25px;
+  border: none;
+  background-color: var(--white);
+}
+
+#image-src {
+  margin: 15px 0 0 0;
+  padding: 10px;
+  border-radius: 25px;
+  border: none;
+  background-color: var(--white);
+}
+
+#feedPage h2 {
+  align-self: start;
+  margin-top: 50px;
+}
+
+#feed-container {
+  width: 40vw;
+  margin-bottom: 50px;
+}
+
+img {
+  border-radius: 10px;
+  margin-top: 10px;
+  max-width: 100%;
+  height: auto;
+}
+
+.post:first-child {
+  border-top: solid 2px var(--secondary-color);
+}
+
+.post {
+  background-color: var(--white);
+  padding: 5px 15px 0px 15px;
+  border-bottom: solid 2px var(--secondary-color);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.post p {
+  align-self: self-start;
+}
+
+.postInfo {
+  margin-top: 15px;
+  align-self: self-start;
+}
+
+.actions-div {
+  display: flex;
+  align-self: self-end;
+}
+
+.edit-btn,
+.delete-btn {
+  background-color: var(--secondary-color);
+  height: 20px;
+  border-radius: 25px;
+  border: none;
+  cursor: pointer;
+  padding: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0px 3px 5px 3px;
+}
+
+.edit-btn:hover,
+.delete-btn:hover {
+  background-color: var(--secondary-color-hover);
+}
+
+dialog {
+  border-radius: 25px;
+  border: none;
+  display: flex;
+  flex-direction: column;
+}
+
+.close-btn {
+  background-color: var(--white);
+  color: var(--black);
+  border: none;
+  align-self: self-end;
+}
+
+.close-btn:hover {
+  color: var(--secondary-color);
+}
+
+.edit-form {
+  display: flex;
+  flex-direction: column;
+}
+
+@media screen and (max-width: 600px) {
+  .post {
+    width: 60vw;
+    padding: 0;
+  }
+  #post-input {
+    width: 60vw;
+  }
+  #feed-container {
+    width: 60vw;
+    margin-bottom: 50px;
+  }
+}

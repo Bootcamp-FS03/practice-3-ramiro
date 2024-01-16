@@ -1,13 +1,158 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Poppins"
+    />
+    <link rel="stylesheet" href="/src/styles/styles.css" />
     <title>Practice 3 - Ramiro</title>
   </head>
+
   <body>
-    <div id="app"></div>
+    <div id="app">
+      <div id="loginPage" class="page">
+        <h1>Login</h1>
+        <form id="loginForm">
+          <input
+            type="text"
+            id="username"
+            name="username"
+            required
+            placeholder="Username"
+          />
+          <input
+            type="password"
+            id="password"
+            name="password"
+            required
+            placeholder="Password"
+          />
+          <button type="button" id="login-btn" data-action="login">
+            Login
+          </button>
+        </form>
+        <p>
+          Don't have an account?
+          <button data-toggle-id="registerPage" class="auth-nav-btn">
+            Register
+          </button>
+        </p>
+      </div>
+
+      <div id="registerPage" class="page" style="display: none">
+        <h1>Register</h1>
+        <form id="registerForm">
+          <input
+            type="text"
+            id="reg-username"
+            name="regUsername"
+            required
+            placeholder="Username"
+          />
+          <input
+            type="email"
+            id="reg-email"
+            name="regEmail"
+            required
+            placeholder="Email"
+          />
+          <input
+            type="password"
+            id="reg-password"
+            name="regPassword"
+            required
+            placeholder="Password"
+          />
+          <input
+            type="password"
+            id="confirmPassword"
+            name="confirmPassword"
+            required
+            placeholder="Confirm Password"
+          />
+          <button type="button" id="register-btn" data-action="register">
+            Register
+          </button>
+        </form>
+        <p>
+          Already have an account?
+          <button data-toggle-id="loginPage" class="auth-nav-btn">Login</button>
+        </p>
+      </div>
+
+      <div id="changePasswordPage" class="page" style="display: none">
+        <h1>Change Password</h1>
+        <form id="changePasswordForm">
+          <input
+            type="text"
+            id="ps-email"
+            name="ps-email"
+            required
+            placeholder="Email"
+          />
+          <input
+            type="password"
+            id="newPassword"
+            name="newPassword"
+            required
+            placeholder="New Password"
+          />
+          <input
+            type="password"
+            id="confirmNewPassword"
+            name="confirmNewPassword"
+            required
+            placeholder="Confirm New Password"
+          />
+          <button
+            type="button"
+            id="change-password-btn"
+            data-action="changePassword"
+          >
+            Change Password
+          </button>
+        </form>
+      </div>
+
+      <p id="forgot-password">
+        Forgot your password?
+        <button data-toggle-id="changePasswordPage" class="nav-btn">
+          Change Password
+        </button>
+      </p>
+
+      <p id="back-to-login" style="display: none">
+        <button data-toggle-id="loginPage" class="nav-btn">
+          Back to Login Page
+        </button>
+      </p>
+
+      <div id="navbar" style="display: none">
+        <h1 id="welcome"></h1>
+        <button id="logout-btn" data-action="logout">Log Out</button>
+      </div>
+
+      <div id="feedPage" class="page" style="display: none">
+        <h2>What's in your mind?...</h2>
+        <textarea id="post-input" placeholder=""></textarea>
+        <input
+          id="image-src"
+          type="text"
+          placeholder="Add your image url here"
+        />
+        <button type="button" id="add-post-btn" data-action="addPost">
+          Post
+        </button>
+
+        <div id="feed-container"></div>
+      </div>
+
+      <dialog id="notification-dialog" style="display: none"></dialog>
+    </div>
     <script type="module" src="/src/main.ts"></script>
   </body>
 </html>

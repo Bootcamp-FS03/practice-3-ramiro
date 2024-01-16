@@ -11,5 +11,12 @@
   "devDependencies": {
     "typescript": "^5.2.2",
     "vite": "^5.0.8"
+  },
+  "prettier": {
+    "semi": true,
+    "singleQuote": false,
+    "tabWidth": 2,
+    "useTabs": false,
+    "trailingComma": "all"
   }
 }

@@ -1,24 +1,65 @@
-import './style.css'
-import typescriptLogo from './typescript.svg'
-import viteLogo from '/vite.svg'
-import { setupCounter } from './counter.ts'
+import { AuthComponent } from "./components/AuthComponent";
+import { FeedComponent } from "./components/FeedComponent";
+import { AuthService } from "./services/AuthService";
 
-document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
-  <div>
-    <a href="https://vitejs.dev" target="_blank">
-      <img src="${viteLogo}" class="logo" alt="Vite logo" />
-    </a>
-    <a href="https://www.typescriptlang.org/" target="_blank">
-      <img src="${typescriptLogo}" class="logo vanilla" alt="TypeScript logo" />
-    </a>
-    <h1>Vite + TypeScript</h1>
-    <div class="card">
-      <button id="counter" type="button"></button>
-    </div>
-    <p class="read-the-docs">
-      Click on the Vite and TypeScript logos to learn more
-    </p>
-  </div>
-`
+// Init Event Listener
+document.getElementById("app")!.addEventListener("click", (e) => {
+  if (!(e.target instanceof HTMLButtonElement)) {
+    return;
+  }
 
-setupCounter(document.querySelector<HTMLButtonElement>('#counter')!)
+  if (e.target.dataset.toggleId) {
+    let elem = document.getElementById(e.target.dataset.toggleId);
+
+    if (elem && elem.id === "changePasswordPage") {
+      document.getElementById("back-to-login")!.style.display = "block";
+      document.getElementById("forgot-password")!.style.display = "none";
+    } else {
+      document.getElementById("back-to-login")!.style.display = "none";
+      document.getElementById("forgot-password")!.style.display = "block";
+    }
+
+    document.getElementById("loginPage")!.style.display = "none";
+    document.getElementById("registerPage")!.style.display = "none";
+    document.getElementById("changePasswordPage")!.style.display = "none";
+
+    elem!.style.display = "block";
+  } else if (e.target.dataset.action) {
+    switch (e.target.dataset.action) {
+      case "login":
+        AuthComponent.login();
+        break;
+      case "register":
+        AuthComponent.register();
+        break;
+      case "changePassword":
+        AuthComponent.changePassword();
+        break;
+      case "logout":
+        AuthComponent.logout();
+        break;
+      case "addPost":
+        FeedComponent.addPost();
+        break;
+      default:
+        return;
+    }
+  }
+});
+
+// Authentication
+if (AuthService.getCurrentUser()) {
+  document.getElementById("loginPage")!.style.display = "none";
+  document.getElementById("registerPage")!.style.display = "none";
+  document.getElementById("changePasswordPage")!.style.display = "none";
+  document.getElementById("forgot-password")!.style.display = "none";
+  document.getElementById("back-to-login")!.style.display = "none";
+
+  document.getElementById("navbar")!.style.display = "flex";
+  document.getElementById(
+    "welcome",
+  )!.innerHTML = `Welcome ${AuthService.getCurrentUser()}!`;
+  document.getElementById("feedPage")!.style.display = "flex";
+
+  FeedComponent.showFeed();
+}
