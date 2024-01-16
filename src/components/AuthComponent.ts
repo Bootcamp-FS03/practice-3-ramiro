@@ -73,6 +73,7 @@ export class AuthComponent {
       if (isRegistered) {
         NotificationBuilder.showNotification("User registered successfully.");
         localStorage.setItem("user", username);
+        location.reload();
       }
     } else {
       NotificationBuilder.showNotification("Fill all inputs.");
